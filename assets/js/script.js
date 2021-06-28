@@ -13,12 +13,26 @@
 // THEN I can enter an event -X
 
 // WHEN I click the save button for that time block
-// THEN the text for that event is saved in local storage
+// THEN the text for that event is saved in local storage -X
 
 // WHEN I refresh the page
-// THEN the saved events persist
+// THEN the saved events persist -X
 
+
+// button variable
 var saveBtn = $(".saveBtn")
+
+// Get item from local storage if any
+$("#9 .description").val(localStorage.getItem("9"));
+$("#10 .description").val(localStorage.getItem("10"));
+$("#11 .description").val(localStorage.getItem("11"));
+$("#12 .description").val(localStorage.getItem("12"));
+$("#13 .description").val(localStorage.getItem("13"));
+$("#14 .description").val(localStorage.getItem("14"));
+$("#15 .description").val(localStorage.getItem("15"));
+$("#16 .description").val(localStorage.getItem("16"));
+$("#17 .description").val(localStorage.getItem("17"));
+
 
 // WHEN I open the planner
 // THEN the current day is displayed at the top of the calendar
@@ -52,39 +66,12 @@ timeColors();
 // THEN the text for that event is saved in local storage
 
 function saveEnteredText() {
-
-    var enteredText = (this.previousElementSibling.value);
-
-    console.log(enteredText);
-
-    localStorage.setItem("what was said", enteredText);
+ var enteredText = $(this).siblings(".description").val();
+ var timeOfDay = $(this).parent().attr("id");
+ console.log(enteredText);
+ console.log(timeOfDay);
+localStorage.setItem(timeOfDay, enteredText);
 };
-
-
-    // localStorage.getItem("what was said");
-
-    // if (enteredText !== null) {
-    //     var textSticky = JSON.parse(enteredText);
-    // }
-    
-    
-    // localStorage.setItem(actualCurrentTime, enteredInfo)
-    // localStorage.setItem(enteredInfo, )
-    // console.log("hello")
-    // console.log(this.previousElementSibling.value)
-    // console.log(enteredInfo)
-
-
-// Get item from local storage if any
-// $("#9 .description").val(localStorage.getItem("9"));
-// $("#10 .description").val(localStorage.getItem("10"));
-// $("#11 .description").val(localStorage.getItem("11"));
-// $("#12 .description").val(localStorage.getItem("12"));
-// $("#13 .description").val(localStorage.getItem("13"));
-// $("#14 .description").val(localStorage.getItem("14"));
-// $("#15 .description").val(localStorage.getItem("15"));
-// $("#16 .description").val(localStorage.getItem("16"));
-// $("#17 .description").val(localStorage.getItem("17"));
 
 // click event //
 saveBtn.on("click", saveEnteredText)
